@@ -102,7 +102,9 @@ server <- function(input, output) {
     american_results<-subset(var_map(),
                              grepl(", USA", df$Location)==TRUE)
 
-    points(mapproject(american_results$lng, american_results$lat), col=NA, bg=var_points(),  pch=21, cex=2.0)
+    points(mapproject(american_results$lng, american_results$lat), col=NA, bg=var_points(),  pch=21, cex=2.0) 
+    
+    title("Where is Help Needed?")
     
   })
   
