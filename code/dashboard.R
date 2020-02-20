@@ -66,25 +66,13 @@ server <- function(input, output) {
     if ("Hurricane" %in% input$var_disaster) return(Summary_hurricane)
     if ("Fire" %in% input$var_disaster) return(Summary_fire)
   })
+  
+  var_map <- reactive({
+    if ("Hurricane" %in% input$var_disaster) return(df %>% filter(disaster == "hurricane") %>% filter(requesting_help == 1))
+    if ("Fire" %in% input$var_disaster) return(df %>% filter(disaster == "fire") %>% filter(requesting_help == 1))
+  })
 
 
-#   graph_title_joe <- reactive({
-#     if ( "Avg Engagements" %in% input$var_joe) return("Joe average engagements per tweet")
-#     if ( "Avg Engagement Rate" %in% input$var_joe) return("Joe average engagement rate per tweet")
-#     if ( "Avg Clicks" %in% input$var_joe) return("Joe average clicks per tweet")
-#     if ( "Total Engagements" %in% input$var_joe) return("Joe total engagements per tweet")
-#     if ( "Total Clicks" %in% input$var_joe) return("Joe total clicks per tweet")
-#   })
-#   
-#   y_label <- reactive({
-#     if ( "Avg Engagements" %in% input$var_joe) return("Avg engagements per tweet")
-#     if ( "Avg Engagement Rate" %in% input$var_joe) return("Avg engagement rate per tweet")
-#     if ( "Avg Clicks" %in% input$var_joe) return("Avg clicks per tweet")
-#     if ( "Total Engagements" %in% input$var_joe) return("Total engagements per tweet")
-#     if ( "Total Clicks" %in% input$var_joe) return("Total clicks per tweet")
-#   })
-#   
-#   
   output$us_map <- renderPlot({
 
     # Render a map of tweet locations
@@ -92,10 +80,10 @@ server <- function(input, output) {
                            col="#999999", fill=FALSE, bg="#ffffff", lwd=1, add=FALSE, resolution=1)
     
     # Filter for US locations
-    american_results<-subset(df,
+    american_results<-subset(var_map(),
                              grepl(", USA", df$Location)==TRUE)
     
-    points(mapproject(american_results$lng, american_results$lat), col=NA, bg="#D3D3D3", pch=21, cex=1.0)
+    points(mapproject(american_results$lng, american_results$lat), col=NA, bg="#72dda5",  pch=21, cex=2.0)
     
   })
   
