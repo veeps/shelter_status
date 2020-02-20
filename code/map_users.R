@@ -24,7 +24,7 @@ source("https://raw.githubusercontent.com/LucasPuente/geocoding/master/modified_
 #specify what I'm extracting from Googlemap API
 
 geocode_apply<-function(x){
-  geocode(x, source = "google", output = "all", api_key="AIzaSyB7MFo5c8Cw2IOyGH-ZKz6MwL9jSbE85Xg")
+  geocode(x, source = "google", output = "all", api_key="FILL")
 }
 
 #geocode user locations
