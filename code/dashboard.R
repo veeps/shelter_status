@@ -55,12 +55,12 @@ server <- function(input, output) {
 
   
   #render data table
-  #output$table_tweets <- renderDataTable(Summary, options=list(info = FALSE, paging = FALSE, searching = FALSE))
+  output$table_tweets <- renderDataTable(var_disaster(), options=list(info = FALSE, paging = FALSE, searching = FALSE))
   
   #reactive axis and labels
-  output$table_tweets <- reactive({
-    if ("Hurricane" %in% input$var_disaster) return(renderDataTable(Summary_hurricane))
-    if ("Fire" %in% input$var_disaster) return(renderDataTable(Summary_fire))
+  var_disaster <- reactive({
+    if ("Hurricane" %in% input$var_disaster) return(Summary_hurricane)
+    if ("Fire" %in% input$var_disaster) return(Summary_fire)
   })
 
 #   yaxis2_joe <- reactive({
