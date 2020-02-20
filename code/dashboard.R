@@ -5,7 +5,8 @@ library(magrittr)
 library(tidyverse)
 library(dplyr)
 library(scales)
-library(DT)
+library(maps)
+library(mapproj)
 
 
 # Define UI ----
@@ -19,11 +20,14 @@ ui <- fluidPage(div(style="padding-left: 30px",
                 # Define the sidebar with one input
                 sidebarPanel(
                   selectInput(inputId="var_disaster",
-                              label = "Variable",
+                              label = "Disaster Type",
                               choices=c("Hurricane", "Fire"))
                 ),
 
-                mainPanel(dataTableOutput("table_tweets"))
+                mainPanel(dataTableOutput("table_tweets")
+                ),
+                
+                fluidRow (plotOutput("us_map", width = "950px", height = "600px"))
 )
 
 
@@ -63,14 +67,7 @@ server <- function(input, output) {
     if ("Fire" %in% input$var_disaster) return(Summary_fire)
   })
 
-#   yaxis2_joe <- reactive({
-#     if ( "Avg Engagements" %in% input$var_joe) return(averages_Type_Joe$Avg.engagements)
-#     if ( "Avg Engagement Rate" %in% input$var_joe) return(averages_Type_Joe$Avg.engagement.rate)
-#     if ( "Avg Clicks" %in% input$var_joe) return(averages_Type_Joe$Avg.clicks)
-#     if ( "Total Engagements" %in% input$var_joe) return(averages_Type_Joe$Total.engagements)
-#     if ( "Total Clicks" %in% input$var_joe) return(averages_Type_Joe$Total.clicks)
-#   })
-#   
+
 #   graph_title_joe <- reactive({
 #     if ( "Avg Engagements" %in% input$var_joe) return("Joe average engagements per tweet")
 #     if ( "Avg Engagement Rate" %in% input$var_joe) return("Joe average engagement rate per tweet")
@@ -88,25 +85,20 @@ server <- function(input, output) {
 #   })
 #   
 #   
-#   output$plot1_joe <- renderPlot({
-#     
-#     # Render a barplot for content summary
-#     ggplot(Summary_Content_Joe, aes(fill=Content, y=yaxis1_joe(), x=Content)) + 
-#       geom_bar(position="dodge", stat="identity") +
-#       labs(title=graph_title_joe(), caption="Data pulled from Twitter Analytics between 12/01/2018-01/31/2019")+
-#       labs(y=y_label())
-#   })
-#   
-#   
-#   output$plot2_joe <- renderPlot({
-#     
-#     #render barplot by type
-#     ggplot(averages_Type_Joe, aes(fill=Content, y=yaxis2_joe(), x=Type)) + 
-#       geom_bar( stat="identity") + ggtitle("HITRECORD average clicks per tweet by post type") +
-#       labs(title=graph_title_joe(), caption="Data pulled from Twitter Analytics between 12/01/2018-01/31/2019", y=y_label())
-#     
-#   })
-#   
+  output$us_map <- renderPlot({
+
+    # Render a map of tweet locations
+    albers_proj<-maps::map("state", proj="albers", param=c(50, 45), 
+                           col="#999999", fill=FALSE, bg="#ffffff", lwd=1, add=FALSE, resolution=1)
+    
+    # Filter for US locations
+    american_results<-subset(df,
+                             grepl(", USA", df$Location)==TRUE)
+    
+    points(mapproject(american_results$lng, american_results$lat), col=NA, bg="#D3D3D3", pch=21, cex=1.0)
+    
+  })
+  
 }
 
 # Run the app ----
