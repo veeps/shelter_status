@@ -1,3 +1,5 @@
+##### This code is used to create a csv to get all the location data for our users
+
 library(maps)
 library(mapproj)
 library(tidyr)
