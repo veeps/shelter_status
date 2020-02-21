@@ -1,0 +1,12 @@
+name: tweets_disaster_map
+title: tweets_disaster_map
+username:
+account: veeps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1841064
+bundleId: 2816119
+url: https://veeps.shinyapps.io/tweets_disaster_map/
+when: 1582232255.48446
+asMultiple: FALSE
+asStatic: FALSE
