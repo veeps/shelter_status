@@ -12,7 +12,8 @@ In this project, we used natural language processing and classification models t
 
 During a natural disaster, it can be challenging to locate where the most urgent needs are. For first responders and organizations providing assistance, it's difficult to locate and triage where help is needed because there isn't a streamlined channel of communication.
 
-Here we considered how might we identify people in need during a disaster, based on their tweets?
+__How might we identify people in need during a disaster, based on their tweets?__
+
 ---
 ## Data
 
