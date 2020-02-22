@@ -35,17 +35,14 @@ From these Twitter queries, we pulled nearly 80,000 tweets. Cleaning on text dat
 ---
 ## EDA
 
-
+EDA was performed to gain insights on specific needs during hurricanes and fires. The needs after hurricanes were centered around family and God. While the needs during and after fires were more focused on containment, supporting local businesses, and receiving aid from the government. In addition to identifying needs, the stronger correlations between words and a tweet being labeled as requesting help were examined. Heatmaps measuring those correlations returned expected results. Words like 'relief', 'donate', and 'assistance center' had strong correlations with tweets being labeled as requesting help.
 
 ---
 ## Limitations
 
 ---
 
-
-
-
-
+Limitations in applying model included unhelpful location data from Twitter users, limited training on tweets, not all disaster types being named, internet trolls polluting the pool of disaster tweets, twitter not being the go-to place for requesting help during a disaster, and the potential for internet access being compromised after a natural disaster.
 
 ---
 
