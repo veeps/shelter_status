@@ -31,29 +31,37 @@ For the scope of this pilot, we used Twitter scraper to pull tweets from two typ
 
 
 From these Twitter queries, we pulled nearly 80,000 tweets. Cleaning on text data was done [here](./code/002_data_cleaning.ipynb). We used regex to remove hashtags, user tags, links, pictures, and special characters.
-![Dashboard flow](./visuals/regex.png)
+
+![Cleaning text](./visuals/regex.png)
+
 ---
 ## EDA
 
-EDA was performed to gain insights on specific needs during hurricanes and fires. The needs after hurricanes were centered around family and God. While the needs during and after fires were more focused on containment, supporting local businesses, and receiving aid from the government. In addition to identifying needs, the stronger correlations between words and a tweet being labeled as requesting help were examined. Heatmaps measuring those correlations returned expected results. Words like 'relief', 'donate', and 'assistance center' had strong correlations with tweets being labeled as requesting help.
+EDA was performed to gain insights on specific needs during hurricanes and fires. The needs after hurricanes were centered around family and God.
+![Hurricane Words](./visuals/hurricane_tfidf.png)
+
+While the needs during and after fires were more focused on containment, supporting local businesses, and receiving aid from the government.
+
+![Fire Words](./visuals/fire_tfidf.png)
+
+In addition to identifying needs, the stronger correlations between words and a tweet being labeled as requesting help were examined. Heatmaps measuring those correlations returned expected results. Words like 'relief', 'donate', and 'assistance center' had strong correlations with tweets being labeled as requesting help.
+
+![Hurricane Corr](./visuals/hurricane_heatmap.png) ![Fire Corr](./visuals/fire_heatmap.png)
 
 ---
 ## Limitations
-
----
 
 Limitations in applying model included unhelpful location data from Twitter users, limited training on tweets, not all disaster types being named, internet trolls polluting the pool of disaster tweets, twitter not being the go-to place for requesting help during a disaster, and the potential for internet access being compromised after a natural disaster.
 
 ---
 
 ## Modeling
----
 
 We implemented various models, including Logistic Regression, Support Vector Machines ('SVM'), Multinomial Naive Bayes, Gaussian Naive Bayes, and the ensemble model Bagging Classifier which is a decision tree method that utilizes Boostrapping with replacement. Our baseline score was 77%. The best model was the SVM utilizing the Count Vectorizer, which had a test score of 91.3%. The SVM has a number of kernels, including Radial Basis Function ('RBF'), linear, polynomial and sigmoid. The RBF kernel, the default, performed much better than the other three. The second best model was a variation of the SVM, however, it used the TFIDF Vectorizer and the default RBF kernel and had a test score of 90.9%. In third place was the Multinomial Naive Bayes model with a 90.1% test score.
 
-The most important features, based on the weights of the coefficients for each word were help, relief, donate, assistance, donations, impacted, center, efforts, supplies, bahamas, affected, victims, need, free, support, fund, tomorrow, Healdsburg, donated, donating, thank, proceeds, helping, today, food, doing, donation, contained, Sunday, and aid.  The top two models had the exact same top words, in the same order. Based on this list, it may be desirable to utilize a lemmatizer or stemmer to shorten words into their stem so that words like donations/donated/donating/donation are combined into one.  This may or may not improve model performance. 
+The most important features, based on the weights of the coefficients for each word were help, relief, donate, assistance, donations, impacted, center, efforts, supplies, bahamas, affected, victims, need, free, support, fund, tomorrow, Healdsburg, donated, donating, thank, proceeds, helping, today, food, doing, donation, contained, Sunday, and aid.  The top two models had the exact same top words, in the same order. Based on this list, it may be desirable to utilize a lemmatizer or stemmer to shorten words into their stem so that words like donations/donated/donating/donation are combined into one.  This may or may not improve model performance.
 
-In order to test our best performing model, SVM with Count Vectorizer, with data that had not been previoulsy labeled, we ran the built in model prediction function on the remaining 50,000+ tweets. The model predicted 'needs help' for 8,306 of those tweets. The first 150 of these tweets were examined and labeled, and the model correctly predicted needs help for 85% of these tweets.
+In order to test our best performing model, SVM with Count Vectorizer, with data that had not been previously labeled, we ran the built in model prediction function on the remaining 50,000+ tweets. The model predicted 'needs help' for 8,306 of those tweets. The first 150 of these tweets were examined and labeled, and the model correctly predicted needs help for 85% of these tweets.
 
 
 ---
@@ -77,4 +85,4 @@ Code for the dashboard can be seen [here](./code/dashboard_code)
 ---
 # Conclusion
 
-The pace of change in social media, like all technology, is increasing rapidly. New platforms, like TikTok, Lasso, Vero, Steemit and Caffeine, are introduced constantly. Likewise, in our ever-changing world, natural and man-made disasters are an ever constant threat. Disaster response and relief must evolve to keep pace with these changes to be as fast and efficient as possible. Drone delivery, autonomous vehicles, machine learning and satellite 5G communications must be leveraged along with these new social media communications tools to minimize the loss of life and property. While privacy of users data is of utmost importance, in the domain of disaster repsonse all data must be leveraged, including location data, to achieve these goals. Since 2012, there has been a Wireless Emergency Alert ('WEA') system in the United States. This system provides geographically targeted alerts during emergency situations. We recommend further study and development of our machine learning algorithm to detect requests for emergency assistance via social media and all other forms of communication. In conjunction with the WEA, our API could greatly enhance disaster preparedness, providing a tool for victims to efficiently and easily communicate their needs during and after an emergency situation, allowing for the most rapid response possible in the delivery of medical assistance and life sustaining supplies.
+The pace of change in social media, like all technology, is increasing rapidly. New platforms, like TikTok, Lasso, Vero, Steemit and Caffeine, are introduced constantly. Likewise, in our ever-changing world, natural and man-made disasters are an ever constant threat. Disaster response and relief must evolve to keep pace with these changes to be as fast and efficient as possible. Drone delivery, autonomous vehicles, machine learning and satellite 5G communications must be leveraged along with these new social media communications tools to minimize the loss of life and property. While privacy of users data is of utmost importance, in the domain of disaster response all data must be leveraged, including location data, to achieve these goals. Since 2012, there has been a Wireless Emergency Alert ('WEA') system in the United States. This system provides geographically targeted alerts during emergency situations. We recommend further study and development of our machine learning algorithm to detect requests for emergency assistance via social media and all other forms of communication. In conjunction with the WEA, our API could greatly enhance disaster preparedness, providing a tool for victims to efficiently and easily communicate their needs during and after an emergency situation, allowing for the most rapid response possible in the delivery of medical assistance and life sustaining supplies.
