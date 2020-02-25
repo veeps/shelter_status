@@ -37,19 +37,20 @@ From these Twitter queries, we pulled nearly 80,000 tweets. Cleaning on text dat
 ---
 ## EDA
 
-EDA was performed to gain insights on specific needs during hurricanes and fires. The needs after hurricanes were centered around family and God.
-![Hurricane Words](./visuals/hurricane_tfidf.png)
+EDA was performed to gain insights on specific needs during hurricanes and fires. The needs after hurricanes were centered around family and God. While the needs during and after fires were more focused on containment, supporting local businesses, and receiving aid from the government.
 
-While the needs during and after fires were more focused on containment, supporting local businesses, and receiving aid from the government.
-
-![Fire Words](./visuals/fire_tfidf.png)
+<p float="centered">
+  <img src="./visuals/hurricane_tfidf.png" width="45%" />
+  <img src="./visuals/fire_tfidf.png" width="45%" />
+</p>
 
 In addition to identifying needs, the stronger correlations between words and a tweet being labeled as requesting help were examined. Heatmaps measuring those correlations returned expected results. Words like 'relief', 'donate', and 'assistance center' had strong correlations with tweets being labeled as requesting help.
 
 <p float="centered">
-  <img src="./visuals/hurricane_heatmap.png" width="100" />
-  <img src="./visuals/fire_heatmap.png" width="100" />
+  <img src="./visuals/hurricane_heatmap.png" width="45%" />
+  <img src="./visuals/fire_heatmap.png" width="45%" />
 </p>
+
 ---
 ## Limitations
 
@@ -59,9 +60,11 @@ Limitations in applying model included unhelpful location data from Twitter user
 
 ## Modeling
 
-We implemented various models, including Logistic Regression, Support Vector Machines ('SVM'), Multinomial Naive Bayes, Gaussian Naive Bayes, and the ensemble model Bagging Classifier which is a decision tree method that utilizes Boostrapping with replacement. Our baseline score was 77%. The best model was the SVM utilizing the Count Vectorizer, which had a test score of 91.3%. The SVM has a number of kernels, including Radial Basis Function ('RBF'), linear, polynomial and sigmoid. The RBF kernel, the default, performed much better than the other three. The second best model was a variation of the SVM, however, it used the TFIDF Vectorizer and the default RBF kernel and had a test score of 90.9%. In third place was the Multinomial Naive Bayes model with a 90.1% test score.
+We implemented various models, including Logistic Regression, Support Vector Machines ('SVM'), Multinomial Naive Bayes, Gaussian Naive Bayes, and the ensemble model Bagging Classifier which is a decision tree method that utilizes Boostrapping with replacement. Our baseline score was 77%, meaning of the 1,000 tweets that we manually labeled, 77% of the tweets were classified as requesting help. The best model was the SVM utilizing the Count Vectorizer, which had a test score of 91.3%. The SVM has a number of kernels, including Radial Basis Function ('RBF'), linear, polynomial and sigmoid. The RBF kernel, the default, performed much better than the other three. The second best model was a variation of the SVM, however, it used the TFIDF Vectorizer and the default RBF kernel and had a test score of 90.9%. In third place was the Multinomial Naive Bayes model with a 90.1% test score.
 
 The most important features, based on the weights of the coefficients for each word were help, relief, donate, assistance, donations, impacted, center, efforts, supplies, bahamas, affected, victims, need, free, support, fund, tomorrow, Healdsburg, donated, donating, thank, proceeds, helping, today, food, doing, donation, contained, Sunday, and aid.  The top two models had the exact same top words, in the same order. Based on this list, it may be desirable to utilize a lemmatizer or stemmer to shorten words into their stem so that words like donations/donated/donating/donation are combined into one.  This may or may not improve model performance.
+
+![Most important words](./visuals/important_words_logreg_tfidf.png)
 
 In order to test our best performing model, SVM with Count Vectorizer, with data that had not been previously labeled, we ran the built in model prediction function on the remaining 50,000+ tweets. The model predicted 'needs help' for 8,306 of those tweets. The first 150 of these tweets were examined and labeled, and the model correctly predicted needs help for 85% of these tweets.
 
