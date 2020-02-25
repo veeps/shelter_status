@@ -46,8 +46,10 @@ While the needs during and after fires were more focused on containment, support
 
 In addition to identifying needs, the stronger correlations between words and a tweet being labeled as requesting help were examined. Heatmaps measuring those correlations returned expected results. Words like 'relief', 'donate', and 'assistance center' had strong correlations with tweets being labeled as requesting help.
 
-![Hurricane Corr](./visuals/hurricane_heatmap.png) ![Fire Corr](./visuals/fire_heatmap.png)
-
+<p float="centered">
+  <img src="./visuals/hurricane_heatmap.png" width="100" />
+  <img src="./visuals/fire_heatmap.png" width="100" />
+</p>
 ---
 ## Limitations
 
