@@ -80,7 +80,8 @@ We envision this model can be useful in real-time disaster relief by:
 4. Use Google maps API to get lattitude/longitude location data
 5. First responders can use the dashboard to visualize where help is most needed.
 
-![Dashboard demo](./visuals/dashboard.png)
+
+<a href="https://veeps.shinyapps.io/tweets_disaster_map" rel="Dashboard Demo">![Dashboard](./visuals/dashboard.png)</a>
 
 #### [Click to See Demo](https://veeps.shinyapps.io/tweets_disaster_map)
 
