@@ -81,7 +81,7 @@ We envision this model can be useful in real-time disaster relief by:
 5. First responders can use the dashboard to visualize where help is most needed.
 
 
-<a href="https://veeps.shinyapps.io/tweets_disaster_map" rel="Dashboard Demo">![Dashboard](./visuals/dashboard.png)</a>
+<a href="https://veeps.shinyapps.io/tweets_disaster_map" rel="Dashboard Demo" target ="blank">![Dashboard](./visuals/dashboard.png)</a>
 
 #### [Click to See Demo](https://veeps.shinyapps.io/tweets_disaster_map)
 
